@@ -34,7 +34,7 @@ if $new_found; then
   tar -cvzf $backup_path $backup_dir
   if [ $? -eq 0 ]; then
     echo "Uploading..."
-    curl --fail -T $backup_path -u $user $curl_url && echo "Curl ok" || echo "Curl error"
+    curl --fail -T $backup_path -u $user: -H 'X-Requested-With: XMLHttpRequest' $curl_url && echo "Curl ok" || echo "Curl error"
     touch $backup_ts
     if [ $? -ne 0 ]; then
       echo "Can't touch ts" >&2
